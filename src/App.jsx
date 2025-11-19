@@ -4,10 +4,12 @@ import Services from './components/Services'
 import Industries from './components/Industries'
 import Process from './components/Process'
 import CTA from './components/CTA'
+import ScrollProgress from './components/ScrollProgress'
 
 function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
+      <ScrollProgress />
       <Navbar />
       <Hero />
       <Services />

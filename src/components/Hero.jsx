@@ -1,4 +1,6 @@
 import Spline from '@splinetool/react-spline';
+import { motion } from 'framer-motion';
+import Reveal from './Reveal';
 
 export default function Hero() {
   return (
@@ -21,40 +23,46 @@ export default function Hero() {
       <div className="mx-auto max-w-7xl px-6 pt-40 pb-24 md:pt-44 md:pb-32">
         <div className="grid items-center gap-12 md:grid-cols-2">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-slate-200 backdrop-blur">
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-slate-200 backdrop-blur">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r from-violet-400 via-fuchsia-400 to-amber-300" />
               AI Automation Agency
-            </div>
-            <h1 className="mt-5 text-4xl font-bold tracking-tight text-white md:text-6xl">
+            </motion.div>
+            <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05, duration: 0.7 }} className="mt-5 text-4xl font-bold tracking-tight text-white md:text-6xl">
               Automate growth with Silver AI
-            </h1>
-            <p className="mt-4 text-slate-300 text-lg md:text-xl">
+            </motion.h1>
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }} className="mt-4 text-slate-300 text-lg md:text-xl">
               We design, build and deploy custom AI systems that streamline operations, amplify content, and unlock new revenue — tailored for teams of any size.
-            </p>
+            </motion.p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <a href="#cta" className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-amber-400 px-5 py-3 font-semibold text-white shadow-[0_12px_30px_-10px_rgba(139,92,246,0.7)] hover:brightness-110 transition">
-                Book a demo
-              </a>
-              <a href="#services" className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-semibold text-slate-200 hover:bg-white/10 transition">
-                Explore services
-              </a>
+              <Reveal>
+                <a href="#cta" className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-amber-400 px-5 py-3 font-semibold text-white shadow-[0_12px_30px_-10px_rgba(139,92,246,0.7)] hover:brightness-110 transition">
+                  Book a demo
+                </a>
+              </Reveal>
+              <Reveal delay={0.06}>
+                <a href="#services" className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-semibold text-slate-200 hover:bg-white/10 transition">
+                  Explore services
+                </a>
+              </Reveal>
             </div>
             <div className="mt-8 grid grid-cols-3 gap-4 text-center text-sm text-slate-300/80">
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">+35% Efficiency</div>
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">24/7 Agents</div>
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">Fast ROI</div>
+              {['+35% Efficiency','24/7 Agents','Fast ROI'].map((kpi, i) => (
+                <Reveal key={kpi} delay={i * 0.05}>
+                  <div className="rounded-xl border border-white/10 bg-white/5 p-4">{kpi}</div>
+                </Reveal>
+              ))}
             </div>
           </div>
 
           {/* Spline hero animation */}
-          <div className="relative aspect-square w-full">
+          <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="relative aspect-square w-full">
             <div className="absolute inset-0 rounded-[28px] border border-white/10 bg-slate-900/30 p-2">
               <div className="h-full w-full overflow-hidden rounded-2xl bg-slate-950/60">
                 <Spline scene="https://prod.spline.design/4cHQr84zOGAHOehh/scene.splinecode" />
               </div>
             </div>
             <div className="pointer-events-none absolute -inset-10 -z-10 blur-2xl opacity-40 bg-[conic-gradient(from_90deg_at_50%_50%,#8b5cf6_0%,#ec4899_30%,#f59e0b_60%,transparent_100%)]" />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
